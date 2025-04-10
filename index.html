@@ -8,99 +8,122 @@
       margin: 0;
       background-color: #78bbcb;
       font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
     }
 
     h1 {
       text-align: center;
-      font-size: 3rem;
-      margin: 20px 0;
+      font-size: 4vw;
+      margin: 1vw 0 2vw 0;
       color: black;
-      text-shadow: 2px 2px white;
+      text-shadow: 0.3vw 0.3vw white;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(7, 140px); /* 7 columnas de 140px */
-      grid-template-rows: repeat(5, 120px);    /* 5 filas de 120px */
-      justify-content: center;
-      gap: 0px;
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 80vh;
     }
 
-    .item {
-      width: 100px;
+    .gif {
+      position: absolute;
+      width: 7vw;
       height: auto;
-      margin: auto;
     }
 
-    .big { width: 160px; }
+    #jesus { top: 40%; left: 46%; width: 9vw; }
+
+    #clock1 { top: 5%; left: 10%; }
+    #clock2 { top: 75%; left: 15%; }
+    #clock3 { top: 78%; left: 85%; }
+
+    #toaster1 { top: 10%; left: 35%; }
+    #toaster2 { top: 25%; left: 48%; }
+    #toaster3 { top: 50%; left: 65%; }
+    #toaster4 { top: 70%; left: 48%; }
+
+    #mouth1 { top: 20%; left: 68%; }
+    #mouth2 { top: 53%; left: 78%; }
+
+    #worm1 { top: 3%; left: 50%; }
+    #worm2 { top: 30%; left: 25%; }
+    #worm3 { top: 80%; left: 20%; }
+    #worm4 { top: 12%; left: 72%; }
+
+    #bell1 { top: 35%; left: 62%; }
+    #bell2 { top: 60%; left: 30%; }
+
+    /* Botón de música */
+    #musicBtn {
+      position: absolute;
+      top: 1vw;
+      left: 1vw;
+      padding: 0.5vw 1vw;
+      font-size: 1.2vw;
+      border-radius: 0.5vw;
+      background-color: #fff9c4;
+      border: 2px solid #333;
+      cursor: pointer;
+      font-family: 'Comic Sans MS';
+    }
+
+    #musicBtn:hover {
+      background-color: #ffe082;
+    }
   </style>
 </head>
 <body>
-
-<button onclick="toggleMusic()" id="musicBtn">🔊 Reproducir música</button>
-
-<audio id="musica" loop>
-  <source src="musica.mp3" type="audio/mpeg">
-  Tu navegador no soporta el audio HTML5.
-</audio>
-
-<script>
-  function toggleMusic() {
-    const audio = document.getElementById("musica");
-    const btn = document.getElementById("musicBtn");
-
-    if (audio.paused) {
-      audio.play();
-      btn.textContent = "🔇 Detener música";
-    } else {
-      audio.pause();
-      btn.textContent = "🔊 Reproducir música";
-    }
-  }
-</script>
-
-  
   <h1>Homer's Web Page</h1>
 
-  <div class="grid">
-    <!-- Fila 1 -->
-    <img src="clocks.gif" class="item">     <!-- reloj -->
-    <div></div>
-    <img src="toasters.gif" class="item">   <!-- tostadora -->
-    <div></div>
-    <img src="worms.gif" class="item">      <!-- gusano -->
-    <div></div>
-    <img src="toasters.gif" class="item">   <!-- tostadora -->
+  <button onclick="toggleMusic()" id="musicBtn">🎵 Reproducir música</button>
 
-    <!-- Fila 2 -->
-    <img src="worms.gif" class="item">
-    <img src="toasterb.gif" class="item">
-    <div></div>
-    <img src="jesus.gif" class="item big">
-    <div></div>
-    <img src="bellb.gif" class="item">
-    <img src="mouth.gif" class="item">
+  <audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
 
-    <!-- Fila 3 -->
-    <img src="bells.gif" class="item">
-    <img src="clocks.gif" class="item">
-    <div></div>
-    <div></div>
-    <div></div>
-    <img src="toasterb.gif" class="item">
-    <img src="clocks.gif" class="item">
+  <div class="container">
+    <img src="jesus.gif" class="gif" id="jesus">
 
-    <!-- Fila 4 -->
-    <div></div>
-    <div></div>
-    <img src="worms.gif" class="item">
-    <div></div>
-    <img src="mouth.gif" class="item">
-    <div></div>
-    <div></div>
+    <!-- Relojes -->
+    <img src="clocks.gif" class="gif" id="clock1">
+    <img src="clocks.gif" class="gif" id="clock2">
+    <img src="clocks.gif" class="gif" id="clock3">
 
-    <!-- Fila 5 (opcional para margen) -->
-    <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <!-- Tostadoras -->
+    <img src="toasterb.gif" class="gif" id="toaster1">
+    <img src="toasters.gif" class="gif" id="toaster2">
+    <img src="toasterb.gif" class="gif" id="toaster3">
+    <img src="toasterb.gif" class="gif" id="toaster4">
+
+    <!-- Bocas -->
+    <img src="mouth.gif" class="gif" id="mouth1">
+    <img src="mouth.gif" class="gif" id="mouth2">
+
+    <!-- Gusanos -->
+    <img src="worms.gif" class="gif" id="worm1">
+    <img src="worms.gif" class="gif" id="worm2">
+    <img src="worms.gif" class="gif" id="worm3">
+    <img src="worms.gif" class="gif" id="worm4">
+
+    <!-- Campanas -->
+    <img src="bellb.gif" class="gif" id="bell1">
+    <img src="bells.gif" class="gif" id="bell2">
   </div>
+
+  <script>
+    function toggleMusic() {
+      const audio = document.getElementById("musica");
+      const btn = document.getElementById("musicBtn");
+
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "🔇 Detener música";
+      } else {
+        audio.pause();
+        btn.textContent = "🎵 Reproducir música";
+      }
+    }
+  </script>
 </body>
 </html>
