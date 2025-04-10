@@ -20,9 +20,19 @@
       text-shadow: 2px 2px white;
     }
 
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1024px;
+      height: 576px;
+      position: relative;
+    }
+
     .gif {
       position: absolute;
-      width: 120px; /* Tamaño aumentado */
+      width: 130px;
       height: auto;
     }
   </style>
@@ -30,17 +40,19 @@
 <body>
   <h1>Homer's Web Page</h1>
 
-  <!-- Distribución mejorada, parecida a la original -->
-  <img src="clockb.gif" class="gif" style="top: 80px; left: 100px;">
-  <img src="jesus.gif" class="gif" style="top: 80px; left: 480px; width: 130px;">
-  <img src="worms.gif" class="gif" style="top: 100px; left: 900px; width: 100px;">
-  <img src="toasters.gif" class="gif" style="top: 160px; left: 270px;">
-  <img src="toasterb.gif" class="gif" style="top: 360px; left: 100px;">
-  <img src="mouth.gif" class="gif" style="top: 260px; left: 700px;">
-  <img src="bellb.gif" class="gif" style="top: 200px; left: 850px;">
-  <img src="bells.gif" class="gif" style="top: 460px; left: 300px;">
-  <img src="clocks.gif" class="gif" style="top: 520px; left: 150px;">
-  <img src="wormb.gif" class="gif" style="top: 500px; left: 600px;">
+  <div class="container">
+    <!-- Distribución exacta según la página original -->
+    <img src="clockb.gif" class="gif" style="top: 10px; left: 40px;">
+    <img src="jesus.gif" class="gif" style="top: 0px; left: 440px; width: 140px;">
+    <img src="worms.gif" class="gif" style="top: 30px; left: 800px; width: 110px;">
+    <img src="toasterb.gif" class="gif" style="top: 100px; left: 270px;">
+    <img src="toasters.gif" class="gif" style="top: 180px; left: 100px;">
+    <img src="mouth.gif" class="gif" style="top: 160px; left: 640px;">
+    <img src="bellb.gif" class="gif" style="top: 140px; left: 850px;">
+    <img src="bells.gif" class="gif" style="top: 280px; left: 270px;">
+    <img src="clocks.gif" class="gif" style="top: 330px; left: 50px;">
+    <img src="wormb.gif" class="gif" style="top: 320px; left: 600px;">
+  </div>
 
 </body>
 </html>
