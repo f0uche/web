@@ -6,90 +6,77 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
       background-color: #78bbcb;
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      overflow: hidden;
     }
 
     h1 {
       text-align: center;
       font-size: 3rem;
-      margin: 20px 0 0;
+      margin: 20px 0;
       color: black;
       text-shadow: 2px 2px white;
     }
 
-    .container {
-      position: absolute;
-      top: 120px; /* ajustado para dejar espacio al título */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1024px;
-      height: 600px;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 140px); /* 7 columnas de 140px */
+      grid-template-rows: repeat(5, 120px);    /* 5 filas de 120px */
+      justify-content: center;
+      gap: 0px;
     }
 
-    .gif {
-      position: absolute;
-      width: 120px;
+    .item {
+      width: 100px;
       height: auto;
+      margin: auto;
     }
 
-    #jesus { top: 180px; left: 440px; width: 180px; }
-    #clock1 { top: 0px; left: 40px; }
-    #clock2 { top: 360px; left: 870px; }
-    #clock3 { top: 320px; left: 150px; }
-
-    #toaster1 { top: 40px; left: 270px; }
-    #toaster2 { top: 60px; left: 780px; }
-    #toaster3 { top: 200px; left: 220px; }
-    #toaster4 { top: 350px; left: 700px; }
-
-    #mouth1 { top: 200px; left: 820px; }
-    #mouth2 { top: 40px; left: 600px; }
-
-    #worm1 { top: 20px; left: 520px; }
-    #worm2 { top: 140px; left: 180px; }
-    #worm3 { top: 420px; left: 60px; }
-
-    #bell1 { top: 160px; left: 720px; }
-    #bell2 { top: 300px; left: 300px; }
+    .big { width: 160px; }
   </style>
 </head>
 <body>
   <h1>Homer's Web Page</h1>
 
-  <div class="container" style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); width: 1024px; height: 576px;">
+  <div class="grid">
+    <!-- Fila 1 -->
+    <img src="clocks.gif" class="item">     <!-- reloj -->
+    <div></div>
+    <img src="toasters.gif" class="item">   <!-- tostadora -->
+    <div></div>
+    <img src="worms.gif" class="item">      <!-- gusano -->
+    <div></div>
+    <img src="toasters.gif" class="item">   <!-- tostadora -->
 
-  <!-- Jesús (centro) -->
-  <img src="jesus.gif" class="gif" style="top: 195px; left: 460px; width: 160px;">
+    <!-- Fila 2 -->
+    <img src="worms.gif" class="item">
+    <img src="toasterb.gif" class="item">
+    <div></div>
+    <img src="jesus.gif" class="item big">
+    <div></div>
+    <img src="bellb.gif" class="item">
+    <img src="mouth.gif" class="item">
 
-  <!-- Relojes -->
-  <img src="clocks.gif" class="gif" style="top: 30px; left: 90px;">
-  <img src="clocks.gif" class="gif" style="top: 400px; left: 120px;">
-  <img src="clocks.gif" class="gif" style="top: 420px; left: 830px;">
+    <!-- Fila 3 -->
+    <img src="bells.gif" class="item">
+    <img src="clocks.gif" class="item">
+    <div></div>
+    <div></div>
+    <div></div>
+    <img src="toasterb.gif" class="item">
+    <img src="clocks.gif" class="item">
 
-  <!-- Tostadoras -->
-  <img src="toasterb.gif" class="gif" style="top: 40px; left: 290px;">
-  <img src="toasters.gif" class="gif" style="top: 140px; left: 480px;">
-  <img src="toasters.gif" class="gif" style="top: 200px; left: 700px;">
-  <img src="toasterb.gif" class="gif" style="top: 330px; left: 660px;">
-  <img src="toasterb.gif" class="gif" style="top: 430px; left: 480px;">
+    <!-- Fila 4 -->
+    <div></div>
+    <div></div>
+    <img src="worms.gif" class="item">
+    <div></div>
+    <img src="mouth.gif" class="item">
+    <div></div>
+    <div></div>
 
-  <!-- Bocas -->
-  <img src="mouth.gif" class="gif" style="top: 60px; left: 600px;">
-  <img src="mouth.gif" class="gif" style="top: 240px; left: 770px;">
-
-  <!-- Gusanos -->
-  <img src="worms.gif" class="gif" style="top: 20px; left: 500px;">
-  <img src="worms.gif" class="gif" style="top: 160px; left: 200px;">
-  <img src="worms.gif" class="gif" style="top: 440px; left: 100px;">
-  <img src="worms.gif" class="gif" style="top: 80px; left: 720px;">
-
-  <!-- Campanas -->
-  <img src="bellb.gif" class="gif" style="top: 180px; left: 630px;">
-  <img src="bells.gif" class="gif" style="top: 300px; left: 270px;">
-</div>
-
+    <!-- Fila 5 (opcional para margen) -->
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
 </body>
 </html>
