@@ -4,74 +4,62 @@
   <meta charset="UTF-8">
   <title>Homer's Web Page</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     html, body {
       margin: 0;
       padding: 0;
+      background-color: black;
       height: 100%;
-      background-color: #78bbcb;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .page {
+    .canvas {
+      width: 1024px;
+      height: 768px;
       position: relative;
-      width: 90vw;
-      aspect-ratio: 4/3; /* mantiene relación fija */
-      background-color: #78bbcb;
-      overflow: hidden;
-    }
-
-    h1 {
-      position: absolute;
-      top: 10px;
-      width: 100%;
-      text-align: center;
-      font-size: 3.5vw;
-      color: black;
-      text-shadow: 0.3vw 0.3vw white;
+      background-image: url('fondo.png'); /* usa la imagen original de fondo */
+      background-size: cover;
+      background-position: center;
+      transform: scale(calc(min(100vw / 1024, 100vh / 768)));
+      transform-origin: top left;
     }
 
     .gif {
       position: absolute;
-      width: 7%;
+      width: 60px;
       height: auto;
     }
 
-    #jesus { top: 42%; left: 46%; width: 10%; }
+    #jesus { top: 290px; left: 460px; width: 100px; }
 
-    #clock1 { top: 5%; left: 10%; }
-    #clock2 { top: 80%; left: 15%; }
-    #clock3 { top: 80%; left: 82%; }
+    #clock1 { top: 50px; left: 100px; }
+    #clock2 { top: 620px; left: 150px; }
+    #clock3 { top: 620px; left: 850px; }
 
-    #toaster1 { top: 10%; left: 35%; }
-    #toaster2 { top: 25%; left: 48%; }
-    #toaster3 { top: 55%; left: 66%; }
-    #toaster4 { top: 75%; left: 48%; }
+    #toaster1 { top: 80px; left: 300px; }
+    #toaster2 { top: 200px; left: 480px; }
+    #toaster3 { top: 400px; left: 650px; }
+    #toaster4 { top: 500px; left: 480px; }
 
-    #mouth1 { top: 25%; left: 70%; }
-    #mouth2 { top: 60%; left: 80%; }
+    #mouth1 { top: 200px; left: 720px; }
+    #mouth2 { top: 530px; left: 780px; }
 
-    #worm1 { top: 5%; left: 50%; }
-    #worm2 { top: 32%; left: 22%; }
-    #worm3 { top: 78%; left: 12%; }
-    #worm4 { top: 15%; left: 74%; }
+    #worm1 { top: 60px; left: 500px; }
+    #worm2 { top: 250px; left: 200px; }
+    #worm3 { top: 640px; left: 100px; }
+    #worm4 { top: 140px; left: 720px; }
 
-    #bell1 { top: 40%; left: 60%; }
-    #bell2 { top: 65%; left: 28%; }
+    #bell1 { top: 350px; left: 600px; }
+    #bell2 { top: 550px; left: 300px; }
 
     #musicBtn {
       position: absolute;
-      top: 1.5%;
-      left: 1.5%;
-      padding: 0.5vw 1vw;
-      font-size: 1.2vw;
-      border-radius: 0.5vw;
+      top: 10px;
+      left: 10px;
+      padding: 8px 16px;
+      font-size: 16px;
+      border-radius: 10px;
       background-color: #fff9c4;
       border: 2px solid #333;
       cursor: pointer;
@@ -85,9 +73,7 @@
   </style>
 </head>
 <body>
-  <div class="page">
-    <h1>Homer's Web Page</h1>
-
+  <div class="canvas">
     <button onclick="toggleMusic()" id="musicBtn">🎵 Reproducir música</button>
 
     <audio id="musica" loop>
@@ -95,30 +81,26 @@
       Tu navegador no soporta audio HTML5.
     </audio>
 
+    <!-- GIFs en posición precisa -->
     <img src="jesus.gif" class="gif" id="jesus">
 
-    <!-- Relojes -->
     <img src="clocks.gif" class="gif" id="clock1">
     <img src="clocks.gif" class="gif" id="clock2">
     <img src="clocks.gif" class="gif" id="clock3">
 
-    <!-- Tostadoras -->
     <img src="toasterb.gif" class="gif" id="toaster1">
     <img src="toasters.gif" class="gif" id="toaster2">
     <img src="toasterb.gif" class="gif" id="toaster3">
     <img src="toasterb.gif" class="gif" id="toaster4">
 
-    <!-- Bocas -->
     <img src="mouth.gif" class="gif" id="mouth1">
     <img src="mouth.gif" class="gif" id="mouth2">
 
-    <!-- Gusanos -->
     <img src="worms.gif" class="gif" id="worm1">
     <img src="worms.gif" class="gif" id="worm2">
     <img src="worms.gif" class="gif" id="worm3">
     <img src="worms.gif" class="gif" id="worm4">
 
-    <!-- Campanas -->
     <img src="bellb.gif" class="gif" id="bell1">
     <img src="bells.gif" class="gif" id="bell2">
   </div>
