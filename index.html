@@ -37,17 +37,28 @@
 </head>
 <body>
 
-<button onclick="document.getElementById('musica').play()">🎵 Reproducir música</button>
+<button onclick="toggleMusic()" id="musicBtn">🔊 Reproducir música</button>
 
 <audio id="musica" loop>
   <source src="musica.mp3" type="audio/mpeg">
   Tu navegador no soporta el audio HTML5.
 </audio>
-  
-  <audio autoplay loop>
-  <source src="musica.mp3" type="audio/mpeg">
-  Tu navegador no soporta el audio HTML5.
-</audio>
+
+<script>
+  function toggleMusic() {
+    const audio = document.getElementById("musica");
+    const btn = document.getElementById("musicBtn");
+
+    if (audio.paused) {
+      audio.play();
+      btn.textContent = "🔇 Detener música";
+    } else {
+      audio.pause();
+      btn.textContent = "🔊 Reproducir música";
+    }
+  }
+</script>
+
   
   <h1>Homer's Web Page</h1>
 
