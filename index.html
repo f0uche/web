@@ -9,17 +9,27 @@
       padding: 0;
       background-color: #78bbcb;
       height: 100%;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .canvas-wrapper {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .canvas {
       width: 1024px;
       height: 768px;
       position: relative;
-      margin: auto;
       transform: scale(calc(min(100vw / 1024, 100vh / 768)));
       transform-origin: top left;
+      background-color: #78bbcb;
     }
 
     h1 {
@@ -77,65 +87,43 @@
     #musicBtn:hover {
       background-color: #ffe082;
     }
-
-    /* 🔧 Ajustes para móviles */
-    @media (max-width: 600px) {
-      .canvas {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(calc(min(100vw / 1024, 100vh / 768)));
-        transform-origin: top left;
-      }
-
-      .gif {
-        width: 80px !important;
-      }
-
-      #jesus {
-        width: 110px !important;
-      }
-
-      #musicBtn {
-        font-size: 14px;
-        padding: 6px 12px;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="canvas">
-    <h1>Homer's Web Page</h1>
+  <div class="canvas-wrapper">
+    <div class="canvas">
+      <h1>Homer's Web Page</h1>
 
-    <button onclick="toggleMusic()" id="musicBtn">🎵 Reproducir música</button>
+      <button onclick="toggleMusic()" id="musicBtn">🎵 Reproducir música</button>
 
-    <audio id="musica" loop>
-      <source src="musica.mp3" type="audio/mpeg">
-      Tu navegador no soporta audio HTML5.
-    </audio>
+      <audio id="musica" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+      </audio>
 
-    <!-- GIFs -->
-    <img src="jesus.gif" class="gif" id="jesus">
+      <!-- GIFs -->
+      <img src="jesus.gif" class="gif" id="jesus">
 
-    <img src="clocks.gif" class="gif" id="clock1">
-    <img src="clocks.gif" class="gif" id="clock2">
-    <img src="clocks.gif" class="gif" id="clock3">
+      <img src="clocks.gif" class="gif" id="clock1">
+      <img src="clocks.gif" class="gif" id="clock2">
+      <img src="clocks.gif" class="gif" id="clock3">
 
-    <img src="toasterb.gif" class="gif" id="toaster1">
-    <img src="toasters.gif" class="gif" id="toaster2">
-    <img src="toasterb.gif" class="gif" id="toaster3">
-    <img src="toasterb.gif" class="gif" id="toaster4">
+      <img src="toasterb.gif" class="gif" id="toaster1">
+      <img src="toasters.gif" class="gif" id="toaster2">
+      <img src="toasterb.gif" class="gif" id="toaster3">
+      <img src="toasterb.gif" class="gif" id="toaster4">
 
-    <img src="mouth.gif" class="gif" id="mouth1">
-    <img src="mouth.gif" class="gif" id="mouth2">
+      <img src="mouth.gif" class="gif" id="mouth1">
+      <img src="mouth.gif" class="gif" id="mouth2">
 
-    <img src="worms.gif" class="gif" id="worm1">
-    <img src="worms.gif" class="gif" id="worm2">
-    <img src="worms.gif" class="gif" id="worm3">
-    <img src="worms.gif" class="gif" id="worm4">
+      <img src="worms.gif" class="gif" id="worm1">
+      <img src="worms.gif" class="gif" id="worm2">
+      <img src="worms.gif" class="gif" id="worm3">
+      <img src="worms.gif" class="gif" id="worm4">
 
-    <img src="bellb.gif" class="gif" id="bell1">
-    <img src="bells.gif" class="gif" id="bell2">
+      <img src="bellb.gif" class="gif" id="bell1">
+      <img src="bells.gif" class="gif" id="bell2">
+    </div>
   </div>
 
   <script>
