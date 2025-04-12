@@ -3,65 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <title>Homer's Web Page</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #78bbcb;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-    }
+<style>
+  body {
+    margin: 0;
+    background-color: #78bbcb;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+  }
 
-    h1 {
-      text-align: center;
-      font-size: 4vw;
-      margin-top: 1vw;
-      color: black;
-      text-shadow: 0.3vw 0.3vw white;
-    }
+  h1 {
+    text-align: center;
+    font-size: 4vw;
+    margin-top: 1vw;
+    color: black;
+    text-shadow: 0.3vw 0.3vw white;
+  }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-      width: 90vw;
-      height: 70vh;
-      margin: auto;
-      position: relative;
-    }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    width: 90vw;
+    height: 70vh;
+    margin: auto;
+    position: relative;
+  }
 
-    .item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .item img {
+    width: 7vw;
+    height: auto;
+  }
+
+  #jesus img {
+    width: 10vw;
+  }
+
+  #musicBtn {
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+    padding: 0.5vw 1vw;
+    font-size: 1.2vw;
+    border-radius: 0.5vw;
+    background-color: #fff9c4;
+    border: 2px solid #333;
+    cursor: pointer;
+    font-family: 'Comic Sans MS';
+    z-index: 10;
+  }
+
+  #musicBtn:hover {
+    background-color: #ffe082;
+  }
+
+  /* 🔧 Ajustes para móviles */
+  @media (max-width: 600px) {
     .item img {
-      width: 7vw;
-      height: auto;
+      width: 12vw;
     }
 
     #jesus img {
-      width: 10vw;
+      width: 15vw;
     }
 
-    /* Botón */
     #musicBtn {
-      position: absolute;
-      top: 1vw;
-      left: 1vw;
-      padding: 0.5vw 1vw;
-      font-size: 1.2vw;
-      border-radius: 0.5vw;
-      background-color: #fff9c4;
-      border: 2px solid #333;
-      cursor: pointer;
-      font-family: 'Comic Sans MS';
-      z-index: 10;
+      font-size: 3.5vw;
+      padding: 1vw 2vw;
     }
 
-    #musicBtn:hover {
-      background-color: #ffe082;
+    h1 {
+      font-size: 7vw;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
   <h1>Homer's Web Page</h1>
