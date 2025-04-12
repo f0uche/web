@@ -4,53 +4,69 @@
   <meta charset="UTF-8">
   <title>Homer's Web Page</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
       background-color: #78bbcb;
+      height: 100%;
+      overflow: hidden;
       font-family: 'Comic Sans MS', cursive, sans-serif;
     }
 
-    h1 {
-      text-align: center;
-      font-size: 4vw;
-      margin-top: 1vw;
-      color: black;
-      text-shadow: 0.3vw 0.3vw white;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-      width: 90vw;
-      height: 70vh;
-      margin: auto;
+    .canvas {
+      width: 1024px;
+      height: 768px;
       position: relative;
+      margin: auto;
+      transform: scale(calc(min(100vw / 1024, 100vh / 768)));
+      transform-origin: top left;
     }
 
-    .item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    h1 {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 48px;
+      color: black;
+      text-shadow: 2px 2px white;
     }
 
-    .item img {
-      width: 7vw;
+    .gif {
+      position: absolute;
+      width: 60px;
       height: auto;
     }
 
-    #jesus img {
-      width: 10vw;
-    }
+    #jesus { top: 310px; left: 470px; width: 100px; }
 
-    /* Botón */
+    #clock1 { top: 60px; left: 100px; }
+    #clock2 { top: 620px; left: 160px; }
+    #clock3 { top: 620px; left: 850px; }
+
+    #toaster1 { top: 90px; left: 320px; }
+    #toaster2 { top: 230px; left: 470px; }
+    #toaster3 { top: 480px; left: 660px; }
+    #toaster4 { top: 620px; left: 480px; }
+
+    #mouth1 { top: 230px; left: 700px; }
+    #mouth2 { top: 570px; left: 800px; }
+
+    #worm1 { top: 80px; left: 500px; }
+    #worm2 { top: 320px; left: 220px; }
+    #worm3 { top: 660px; left: 120px; }
+    #worm4 { top: 140px; left: 740px; }
+
+    #bell1 { top: 390px; left: 620px; }
+    #bell2 { top: 570px; left: 300px; }
+
     #musicBtn {
       position: absolute;
-      top: 1vw;
-      left: 1vw;
-      padding: 0.5vw 1vw;
-      font-size: 1.2vw;
-      border-radius: 0.5vw;
+      top: 15px;
+      left: 15px;
+      padding: 8px 16px;
+      font-size: 16px;
+      border-radius: 10px;
       background-color: #fff9c4;
       border: 2px solid #333;
       cursor: pointer;
@@ -61,63 +77,65 @@
     #musicBtn:hover {
       background-color: #ffe082;
     }
+
+    /* 🔧 Ajustes para móviles */
+    @media (max-width: 600px) {
+      .canvas {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(calc(min(100vw / 1024, 100vh / 768)));
+        transform-origin: top left;
+      }
+
+      .gif {
+        width: 80px !important;
+      }
+
+      #jesus {
+        width: 110px !important;
+      }
+
+      #musicBtn {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Homer's Web Page</h1>
+  <div class="canvas">
+    <h1>Homer's Web Page</h1>
 
-  <button onclick="toggleMusic()" id="musicBtn">🎵 Reproducir música</button>
+    <button onclick="toggleMusic()" id="musicBtn">🎵 Reproducir música</button>
 
-  <audio id="musica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio HTML5.
-  </audio>
+    <audio id="musica" loop>
+      <source src="musica.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio HTML5.
+    </audio>
 
-  <div class="grid">
-    <!-- Fila 1 -->
-    <div class="item"><img src="clocks.gif"></div>
-    <div class="item"></div>
-    <div class="item"><img src="toasters.gif"></div>
-    <div class="item"></div>
-    <div class="item"><img src="worms.gif"></div>
-    <div class="item"></div>
-    <div class="item"><img src="toasters.gif"></div>
+    <!-- GIFs -->
+    <img src="jesus.gif" class="gif" id="jesus">
 
-    <!-- Fila 2 -->
-    <div class="item"><img src="worms.gif"></div>
-    <div class="item"><img src="toasterb.gif"></div>
-    <div class="item"></div>
-    <div class="item" id="jesus"><img src="jesus.gif"></div>
-    <div class="item"></div>
-    <div class="item"><img src="bellb.gif"></div>
-    <div class="item"><img src="mouth.gif"></div>
+    <img src="clocks.gif" class="gif" id="clock1">
+    <img src="clocks.gif" class="gif" id="clock2">
+    <img src="clocks.gif" class="gif" id="clock3">
 
-    <!-- Fila 3 -->
-    <div class="item"><img src="bells.gif"></div>
-    <div class="item"><img src="clocks.gif"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"><img src="toasterb.gif"></div>
-    <div class="item"><img src="clocks.gif"></div>
+    <img src="toasterb.gif" class="gif" id="toaster1">
+    <img src="toasters.gif" class="gif" id="toaster2">
+    <img src="toasterb.gif" class="gif" id="toaster3">
+    <img src="toasterb.gif" class="gif" id="toaster4">
 
-    <!-- Fila 4 -->
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"><img src="worms.gif"></div>
-    <div class="item"></div>
-    <div class="item"><img src="mouth.gif"></div>
-    <div class="item"></div>
-    <div class="item"></div>
+    <img src="mouth.gif" class="gif" id="mouth1">
+    <img src="mouth.gif" class="gif" id="mouth2">
 
-    <!-- Fila 5 -->
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
+    <img src="worms.gif" class="gif" id="worm1">
+    <img src="worms.gif" class="gif" id="worm2">
+    <img src="worms.gif" class="gif" id="worm3">
+    <img src="worms.gif" class="gif" id="worm4">
+
+    <img src="bellb.gif" class="gif" id="bell1">
+    <img src="bells.gif" class="gif" id="bell2">
   </div>
 
   <script>
