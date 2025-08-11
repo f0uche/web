@@ -4,100 +4,122 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Homer's Web Page</title>
+  <!-- (Opcional) precargar audio: <link rel="preload" href="musica.mp3" as="audio"> -->
   <style>
-    /* ===== Base ===== */
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background-color: #78bbcb;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      min-height: 100dvh;
-      display: grid;
-      place-items: center; /* centra vertical y horizontal */
+    :root{
+      --bg:#78bbcb;
+      --ink:#000;
+      --shadow:#fff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      font-family: system-ui, -apple-system, 'Comic Sans MS', cursive, sans-serif;
+      min-height:100dvh;
+      display:flex;
+      flex-direction:column;
+    }
+    header{
+      position:relative;
+      padding-block:clamp(8px,1.5vw,20px);
+    }
+    h1{
+      margin:0;
+      text-align:center;
+      font-size:clamp(28px,6vw,64px);
+      color:var(--ink);
+      text-shadow:.3vw .3vw var(--shadow);
+      letter-spacing:.5px;
     }
 
-    h1 {
-      text-align: center;
-      font-size: clamp(28px, 6vw, 64px);
-      margin: 0 0 0.8rem;
-      color: black;
-      text-shadow: 0.3vw 0.3vw white;
-      line-height: 1;
+    /* Botón música */
+    #musicBtn{
+      position:absolute;
+      top:clamp(8px,1vw,16px);
+      left:clamp(8px,1vw,16px);
+      padding:.5em 1em;
+      font-size:clamp(12px,1.2vw,18px);
+      border-radius:10px;
+      background:#fff9c4;
+      border:2px solid #333;
+      cursor:pointer;
+      font-family:'Comic Sans MS', cursive;
+      box-shadow:2px 2px rgba(0,0,0,.15);
+    }
+    #musicBtn:hover,
+    #musicBtn:focus-visible{background:#ffe082; outline:none}
+    #musicBtn[aria-pressed="true"]{background:#ffd54f}
+
+    main{
+      flex:1;
+      display:grid;
+      place-items:center;
+      padding:clamp(8px,2vw,24px);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      grid-auto-rows:1fr;
+      gap:clamp(6px,1vw,16px);
+      width:min(95vw,1200px);
+      aspect-ratio: 16 / 10; /* mantiene proporción */
+      position:relative;
+    }
+    .item{
+      display:flex; align-items:center; justify-content:center;
+    }
+    .item img{
+      width:clamp(44px,7vw,110px);
+      height:auto;
+      will-change: transform;
+      user-select:none;
+      -webkit-user-drag:none;
+      transition: transform .15s ease;
+    }
+    .item img:hover{ transform: scale(1.05); }
+
+    /* tamaño especial */
+    #jesus img{ width:clamp(64px,10vw,160px); }
+
+    /* Animación flotante */
+    @keyframes floaty{
+      0%{ transform: translate(0,0) }
+      50%{ transform: translate(var(--dx,6px), var(--dy, -10px)) }
+      100%{ transform: translate(0,0) }
+    }
+    .float{
+      animation: floaty var(--d,6s) ease-in-out infinite;
     }
 
-    /* ===== Botón música ===== */
-    #musicBtn {
-      position: absolute;
-      top: 0.8rem;
-      left: 0.8rem;
-      padding: 0.5rem 1rem;
-      font-size: clamp(12px, 1.2vw, 18px);
-      border-radius: 0.5rem;
-      background-color: #fff9c4;
-      border: 2px solid #333;
-      cursor: pointer;
-      font-family: 'Comic Sans MS', cursive;
-      z-index: 10;
-    }
-    #musicBtn:hover { background-color: #ffe082; }
-
-    /* ===== Escenario con relación 16:9 =====
-       Mantiene la misma proporción en cualquier dispositivo */
-    .stage {
-      width: min(95vw, 1200px);   /* limita ancho máximo */
-      aspect-ratio: 16 / 9;       /* <- clave */
-      position: relative;
-      display: grid;
-      grid-template-rows: auto 1fr; /* título arriba, grilla abajo */
-      align-items: start;
+    /* Respeto a usuarios que prefieren sin animación */
+    @media (prefers-reduced-motion: reduce){
+      .float{ animation: none !important; }
+      .item img{ transition:none }
     }
 
-    /* ===== Grilla fija (7x5) ===== */
-    .grid {
-      position: relative;
-      width: 100%;
-      height: 100%;                /* llena el área 16:9 */
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-    }
-
-    .item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .item img {
-      width: clamp(40px, 7vw, 110px);
-      height: auto;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    #jesus img { width: clamp(60px, 10vw, 160px); }
-
-    /* ===== Responsive sin cambiar la proporción ni las columnas ===== */
-    @media (max-width: 600px) {
-      h1 { font-size: clamp(24px, 7vw, 42px); }
-      .item img { width: clamp(40px, 12vw, 96px); }
-      #jesus img { width: clamp(60px, 15vw, 140px); }
-      #musicBtn { font-size: 3.5vw; }
+    /* Responsive: en pantallas chicas, 4 columnas */
+    @media (max-width: 600px){
+      .grid{ grid-template-columns: repeat(4, 1fr); aspect-ratio:auto; height:auto; }
+      .item img{ width:clamp(48px,12vw,96px); }
+      #jesus img{ width:clamp(72px,15vw,140px); }
     }
   </style>
 </head>
 <body>
-  <div class="stage">
+  <header>
     <h1>Homer's Web Page</h1>
-
-    <button onclick="toggleMusic()" id="musicBtn">🎵 Reproducir música</button>
-
-    <audio id="musica" loop>
-      <source src="musica.mp3" type="audio/mpeg">
+    <button id="musicBtn" type="button" aria-pressed="false" aria-controls="musica">
+      🎵 Reproducir música
+    </button>
+    <audio id="musica" preload="none" loop>
+      <source src="musica.mp3" type="audio/mpeg" />
       Tu navegador no soporta audio HTML5.
     </audio>
+  </header>
 
-    <div class="grid">
+  <main>
+    <div class="grid" id="grid">
       <!-- Fila 1 -->
       <div class="item"><img src="clocks.gif" alt="" loading="lazy"></div>
       <div class="item"></div>
@@ -135,31 +157,54 @@
       <div class="item"></div>
 
       <!-- Fila 5 -->
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
+      <div class="item"></div><div class="item"></div><div class="item"></div>
+      <div class="item"></div><div class="item"></div><div class="item"></div><div class="item"></div>
     </div>
-  </div>
+  </main>
 
   <script>
-    function toggleMusic() {
-      const audio = document.getElementById("musica");
-      const btn = document.getElementById("musicBtn");
+    // Botón de música accesible
+    const audio = document.getElementById('musica');
+    const btn = document.getElementById('musicBtn');
 
-      if (audio.paused) {
-        audio.play().catch(()=>{});
-        btn.textContent = "🔇 Detener música";
-      } else {
-        audio.pause();
-        btn.textContent = "🎵 Reproducir música";
+    btn.addEventListener('click', async () => {
+      try{
+        if (audio.paused){
+          await audio.play();
+          btn.setAttribute('aria-pressed','true');
+          btn.textContent = '🔇 Detener música';
+        } else {
+          audio.pause();
+          btn.setAttribute('aria-pressed','false');
+          btn.textContent = '🎵 Reproducir música';
+        }
+      }catch(e){
+        console.warn('No se pudo reproducir el audio:', e);
       }
-    }
+    });
+
+    // Animación flotante aleatoria para cada imagen
+    const imgs = document.querySelectorAll('.grid img');
+    imgs.forEach(img => {
+      // saltar animación si el usuario prefiere menos movimiento
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (mq.matches) return;
+
+      // valores aleatorios
+      const dur = (Math.random() * 4 + 4).toFixed(2) + 's'; // 4–8s
+      const dx = (Math.random() * 18 - 9).toFixed(0) + 'px'; // -9–9px
+      const dy = (Math.random() * -16 - 6).toFixed(0) + 'px'; // -6–-22px
+      const delay = (Math.random() * 2).toFixed(2) + 's';
+
+      img.style.setProperty('--d', dur);
+      img.style.setProperty('--dx', dx);
+      img.style.setProperty('--dy', dy);
+      img.style.animationDelay = delay;
+      img.classList.add('float');
+    });
   </script>
 </body>
 </html>
+
 
 
