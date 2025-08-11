@@ -1,207 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Homer's Web Page</title>
-  <!-- (Opcional) precargar audio: <link rel="preload" href="musica.mp3" as="audio"> -->
-  <style>
-    :root{
-      --bg:#78bbcb;
-      --ink:#000;
-      --shadow:#fff;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      font-family: system-ui, -apple-system, 'Comic Sans MS', cursive, sans-serif;
-      min-height:100dvh;
-      display:flex;
-      flex-direction:column;
-    }
-    header{
-      position:relative;
-      padding-block:clamp(8px,1.5vw,20px);
-    }
-    h1{
-      margin:0;
-      text-align:center;
-      font-size:clamp(28px,6vw,64px);
-      color:var(--ink);
-      text-shadow:.3vw .3vw var(--shadow);
-      letter-spacing:.5px;
+<style>
+  body {
+    margin: 0;
+    background-color: #78bbcb;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 4vw;
+    margin-top: 1vw;
+    color: black;
+    text-shadow: 0.3vw 0.3vw white;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    width: 90vw;
+    height: 70vh;
+    margin: auto;
+    position: relative;
+  }
+
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item img {
+    width: 7vw;
+    height: auto;
+  }
+
+  #jesus img {
+    width: 10vw;
+  }
+
+  #musicBtn {
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+    padding: 0.5vw 1vw;
+    font-size: 1.2vw;
+    border-radius: 0.5vw;
+    background-color: #fff9c4;
+    border: 2px solid #333;
+    cursor: pointer;
+    font-family: 'Comic Sans MS';
+    z-index: 10;
+  }
+
+  #musicBtn:hover {
+    background-color: #ffe082;
+  }
+
+  /* 🔧 Ajustes para móviles */
+  @media (max-width: 600px) {
+    .item img {
+      width: 12vw;
     }
 
-    /* Botón música */
-    #musicBtn{
-      position:absolute;
-      top:clamp(8px,1vw,16px);
-      left:clamp(8px,1vw,16px);
-      padding:.5em 1em;
-      font-size:clamp(12px,1.2vw,18px);
-      border-radius:10px;
-      background:#fff9c4;
-      border:2px solid #333;
-      cursor:pointer;
-      font-family:'Comic Sans MS', cursive;
-      box-shadow:2px 2px rgba(0,0,0,.15);
-    }
-    #musicBtn:hover,
-    #musicBtn:focus-visible{background:#ffe082; outline:none}
-    #musicBtn[aria-pressed="true"]{background:#ffd54f}
-
-    main{
-      flex:1;
-      display:grid;
-      place-items:center;
-      padding:clamp(8px,2vw,24px);
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(7,1fr);
-      grid-auto-rows:1fr;
-      gap:clamp(6px,1vw,16px);
-      width:min(95vw,1200px);
-      aspect-ratio: 16 / 10; /* mantiene proporción */
-      position:relative;
-    }
-    .item{
-      display:flex; align-items:center; justify-content:center;
-    }
-    .item img{
-      width:clamp(44px,7vw,110px);
-      height:auto;
-      will-change: transform;
-      user-select:none;
-      -webkit-user-drag:none;
-      transition: transform .15s ease;
-    }
-    .item img:hover{ transform: scale(1.05); }
-
-    /* tamaño especial */
-    #jesus img{ width:clamp(64px,10vw,160px); }
-
-    /* Animación flotante */
-    @keyframes floaty{
-      0%{ transform: translate(0,0) }
-      50%{ transform: translate(var(--dx,6px), var(--dy, -10px)) }
-      100%{ transform: translate(0,0) }
-    }
-    .float{
-      animation: floaty var(--d,6s) ease-in-out infinite;
+    #jesus img {
+      width: 15vw;
     }
 
-    /* Respeto a usuarios que prefieren sin animación */
-    @media (prefers-reduced-motion: reduce){
-      .float{ animation: none !important; }
-      .item img{ transition:none }
+    #musicBtn {
+      font-size: 3.5vw;
+      padding: 1vw 2vw;
     }
 
-    /* Responsive: en pantallas chicas, 4 columnas */
-    @media (max-width: 600px){
-      .grid{ grid-template-columns: repeat(4, 1fr); aspect-ratio:auto; height:auto; }
-      .item img{ width:clamp(48px,12vw,96px); }
-      #jesus img{ width:clamp(72px,15vw,140px); }
+    h1 {
+      font-size: 7vw;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Homer's Web Page</h1>
-    <button id="musicBtn" type="button" aria-pressed="false" aria-controls="musica">
-      🎵 Reproducir música
-    </button>
-    <audio id="musica" preload="none" loop>
-      <source src="musica.mp3" type="audio/mpeg" />
-      Tu navegador no soporta audio HTML5.
-    </audio>
-  </header>
+  <h1>Homer's Web Page</h1>
 
-  <main>
-    <div class="grid" id="grid">
-      <!-- Fila 1 -->
-      <div class="item"><img src="clocks.gif" alt="" loading="lazy"></div>
-      <div class="item"></div>
-      <div class="item"><img src="toasters.gif" alt="" loading="lazy"></div>
-      <div class="item"></div>
-      <div class="item"><img src="worms.gif" alt="" loading="lazy"></div>
-      <div class="item"></div>
-      <div class="item"><img src="toasters.gif" alt="" loading="lazy"></div>
+  <button onclick="toggleMusic()" id="musicBtn">🎵 Reproducir música</button>
 
-      <!-- Fila 2 -->
-      <div class="item"><img src="worms.gif" alt="" loading="lazy"></div>
-      <div class="item"><img src="toasterb.gif" alt="" loading="lazy"></div>
-      <div class="item"></div>
-      <div class="item" id="jesus"><img src="jesus.gif" alt="" loading="lazy"></div>
-      <div class="item"></div>
-      <div class="item"><img src="bellb.gif" alt="" loading="lazy"></div>
-      <div class="item"><img src="mouth.gif" alt="" loading="lazy"></div>
+  <audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
 
-      <!-- Fila 3 -->
-      <div class="item"><img src="bells.gif" alt="" loading="lazy"></div>
-      <div class="item"><img src="clocks.gif" alt="" loading="lazy"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"><img src="toasterb.gif" alt="" loading="lazy"></div>
-      <div class="item"><img src="clocks.gif" alt="" loading="lazy"></div>
+  <div class="grid">
+    <!-- Fila 1 -->
+    <div class="item"><img src="clocks.gif"></div>
+    <div class="item"></div>
+    <div class="item"><img src="toasters.gif"></div>
+    <div class="item"></div>
+    <div class="item"><img src="worms.gif"></div>
+    <div class="item"></div>
+    <div class="item"><img src="toasters.gif"></div>
 
-      <!-- Fila 4 -->
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"><img src="worms.gif" alt="" loading="lazy"></div>
-      <div class="item"></div>
-      <div class="item"><img src="mouth.gif" alt="" loading="lazy"></div>
-      <div class="item"></div>
-      <div class="item"></div>
+    <!-- Fila 2 -->
+    <div class="item"><img src="worms.gif"></div>
+    <div class="item"><img src="toasterb.gif"></div>
+    <div class="item"></div>
+    <div class="item" id="jesus"><img src="jesus.gif"></div>
+    <div class="item"></div>
+    <div class="item"><img src="bellb.gif"></div>
+    <div class="item"><img src="mouth.gif"></div>
 
-      <!-- Fila 5 -->
-      <div class="item"></div><div class="item"></div><div class="item"></div>
-      <div class="item"></div><div class="item"></div><div class="item"></div><div class="item"></div>
-    </div>
-  </main>
+    <!-- Fila 3 -->
+    <div class="item"><img src="bells.gif"></div>
+    <div class="item"><img src="clocks.gif"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"><img src="toasterb.gif"></div>
+    <div class="item"><img src="clocks.gif"></div>
+
+    <!-- Fila 4 -->
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"><img src="worms.gif"></div>
+    <div class="item"></div>
+    <div class="item"><img src="mouth.gif"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+
+    <!-- Fila 5 -->
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
 
   <script>
-    // Botón de música accesible
-    const audio = document.getElementById('musica');
-    const btn = document.getElementById('musicBtn');
+    function toggleMusic() {
+      const audio = document.getElementById("musica");
+      const btn = document.getElementById("musicBtn");
 
-    btn.addEventListener('click', async () => {
-      try{
-        if (audio.paused){
-          await audio.play();
-          btn.setAttribute('aria-pressed','true');
-          btn.textContent = '🔇 Detener música';
-        } else {
-          audio.pause();
-          btn.setAttribute('aria-pressed','false');
-          btn.textContent = '🎵 Reproducir música';
-        }
-      }catch(e){
-        console.warn('No se pudo reproducir el audio:', e);
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "🔇 Detener música";
+      } else {
+        audio.pause();
+        btn.textContent = "🎵 Reproducir música";
       }
-    });
-
-    // Animación flotante aleatoria para cada imagen
-    const imgs = document.querySelectorAll('.grid img');
-    imgs.forEach(img => {
-      // saltar animación si el usuario prefiere menos movimiento
-      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-      if (mq.matches) return;
-
-      // valores aleatorios
-      const dur = (Math.random() * 4 + 4).toFixed(2) + 's'; // 4–8s
-      const dx = (Math.random() * 18 - 9).toFixed(0) + 'px'; // -9–9px
-      const dy = (Math.random() * -16 - 6).toFixed(0) + 'px'; // -6–-22px
-      const delay = (Math.random() * 2).toFixed(2) + 's';
-
-      img.style.setProperty('--d', dur);
-      img.style.setProperty('--dx', dx);
-      img.style.setProperty('--dy', dy);
-      img.style.animationDelay = delay;
-      img.classList.add('float');
-    });
+    }
   </script>
 </body>
 </html>
