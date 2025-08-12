@@ -6,89 +6,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{
-      --maxw: 1100px;           /* ancho máximo en desktop */
-      --ratio-w: 16;            /* relación de aspecto (ancho) */
-      --ratio-h: 9;             /* relación de aspecto (alto) */
+      --maxw: 1100px;
+      --ratio-w: 16;
+      --ratio-h: 9;
+    }
+    *{ box-sizing:border-box }
+    body{
+      margin:0;
+      background:#78bbcb;
+      font-family:'Comic Sans MS', cursive, sans-serif;
+      min-height:100svh;
     }
 
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background-color: #78bbcb;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-    }
-
-    /* Botón fijo para que no se mueva en móvil */
     .music-btn{
-      position: fixed;
-      top: .6rem;
-      left: .6rem;
-      z-index: 10;
+      position: fixed; top:.6rem; left:.6rem; z-index:10;
     }
-
     h1{
-      text-align: center;
-      font-size: clamp(22px, 4vw, 48px);
-      margin: 1rem 0 .5rem;
-      color: #000;
-      text-shadow: .3vw .3vw #fff;
+      text-align:center;
+      font-size:clamp(22px,4vw,48px);
+      margin:1.2rem 0 .6rem;
+      color:#000; text-shadow:.3vw .3vw #fff;
     }
 
-    /* CONTENEDOR CON RELACIÓN DE ASPECTO */
+    /* ——— Escena con relación 16:9 en pantallas medianas/grandes ——— */
     .stage{
-      width: min(92vw, var(--maxw));
-      margin: 0 auto 6vh;
-      aspect-ratio: var(--ratio-w) / var(--ratio-h);
-      /* fallback si algún navegador no soporta aspect-ratio */
-      position: relative;
+      width:min(92vw, var(--maxw));
+      margin:0 auto 6vh;
+      aspect-ratio:var(--ratio-w)/var(--ratio-h);
+      position:relative; /* para el grid absoluto */
     }
-    .stage::before{
-      content:"";
-      float:left;
-      padding-top: calc(100% * var(--ratio-h) / var(--ratio-w));
-    }
-    .stage::after{ content:""; display:block; clear:both; }
 
-    /* GRID ocupa todo el stage */
     .grid{
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       display:grid;
-      grid-template-columns: repeat(7, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-      gap: clamp(6px, 1vw, 14px);
-      padding: clamp(6px, 1vw, 14px);
+      grid-template-columns:repeat(7,1fr);
+      grid-template-rows:repeat(5,1fr);
+      gap:clamp(6px,1vw,14px);
+      padding:clamp(6px,1vw,14px);
     }
-
-    .item{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
-    /* Las imágenes mantienen proporción y escalan según pantalla */
+    .item{ display:flex; align-items:center; justify-content:center; }
     .item img{
-      width: clamp(40px, 6.5vw, 90px);
-      height: auto;
-      image-rendering: pixelated; /* se ve más “retro” en móvil */
-      max-width: 100%;
-      max-height: 100%;
+      width:clamp(40px,6.5vw,90px);
+      height:auto; max-width:100%; max-height:100%;
+      image-rendering:pixelated;
     }
 
-    /* Ajustes en móviles muy estrechos */
-    @media (max-width: 480px){
-      /* Mantiene 7x5, pero reduce tamaño y separación para “llenar” mejor */
-      .grid{ gap: clamp(4px, .8vw, 10px); padding: clamp(4px, .8vw, 10px); }
-      .item img{ width: clamp(34px, 8vw, 72px); }
-    }
-
-    /* Si quieres que haya menos columnas en móviles (opcional):
-    @media (max-width: 480px){
-      .grid{
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(7, 1fr);
+    /* ——— Ajuste móvil: altura forzada, sin aspect-ratio ——— */
+    @media (max-width: 600px){
+      .stage{
+        width:100vw;
+        height:80svh;           /* hace visible y “llena” la escena */
+        aspect-ratio:auto;      /* desactiva la relación fija */
       }
-    } */
+      .grid{
+        gap:clamp(4px,.8vw,10px);
+        padding:clamp(4px,.8vw,10px);
+      }
+      .item img{ width:clamp(34px,8vw,72px); }
+      /* Opcional: menos columnas para ganar densidad en pantallas angostas */
+      /* .grid{ grid-template-columns:repeat(5,1fr); grid-template-rows:repeat(7,1fr); } */
+    }
   </style>
 </head>
 <body>
@@ -97,14 +74,15 @@
 
   <div class="stage">
     <div class="grid">
-      <!-- Ejemplos; deja tus items como ya los tienes -->
+      <!-- Coloca aquí TODOS tus items como ya los tenías -->
       <div class="item"><img src="img/reloj.gif" alt=""></div>
       <div class="item"><img src="img/tostadora.gif" alt=""></div>
       <div class="item"><img src="img/gusano.gif" alt=""></div>
       <div class="item"><img src="img/tostadora.gif" alt=""></div>
       <div class="item"><img src="img/jesus.gif" alt=""></div>
-      <!-- ... resto de tus items -->
+      <!-- ... resto de items -->
     </div>
   </div>
 </body>
 </html>
+
