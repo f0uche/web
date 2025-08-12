@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Homer's Web Page</title>
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
   body {
     margin: 0;
     background-color: #78bbcb;
@@ -62,10 +63,10 @@
   }
 
   /* 🔧 Ajustes para móviles */
-@media (max-width: 600px) {
-  .item img {
-    width: 12vw;
-  }
+@media (max-width: 600px){
+  .item img { width: 12vw; }
+  #jesus img { width: 20vw !important; } /* 2x respecto a 10vw de escritorio */
+}
 
   /* Jesús al doble de tamaño que en escritorio */
   #jesus img {
