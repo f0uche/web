@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Homer's Web Page</title>
 <style>
   body {
@@ -13,7 +12,7 @@
 
   h1 {
     text-align: center;
-    font-size: clamp(28px, 4vw, 56px);
+    font-size: 4vw;
     margin-top: 1vw;
     color: black;
     text-shadow: 0.3vw 0.3vw white;
@@ -48,8 +47,8 @@
     position: absolute;
     top: 1vw;
     left: 1vw;
-    padding: clamp(8px, 0.5vw, 14px) clamp(12px, 1vw, 22px);
-    font-size: clamp(14px, 1.2vw, 22px);
+    padding: 0.5vw 1vw;
+    font-size: 1.2vw;
     border-radius: 0.5vw;
     background-color: #fff9c4;
     border: 2px solid #333;
@@ -62,31 +61,23 @@
     background-color: #ffe082;
   }
 
-  /* Escritorio forzado */
-  @media (min-width: 601px) {
-    #jesus img {
-      width: 10vw;
-    }
-  }
-
   /* 🔧 Ajustes para móviles */
   @media (max-width: 600px) {
     .item img {
       width: 12vw;
     }
 
-    /* Jesús al doble en móvil */
     #jesus img {
-      width: 20vw;
+      width: 15vw;
     }
 
     #musicBtn {
-      font-size: clamp(16px, 3.5vw, 22px);
-      padding: clamp(8px, 1vw, 16px) clamp(12px, 2vw, 24px);
+      font-size: 3.5vw;
+      padding: 1vw 2vw;
     }
 
     h1 {
-      font-size: clamp(24px, 7vw, 44px);
+      font-size: 7vw;
     }
   }
 </style>
@@ -113,6 +104,56 @@
 
     <!-- Fila 2 -->
     <div class="item"><img src="worms.gif"></div>
-    <div class="item"><img src="toasterb.gif"></
+    <div class="item"><img src="toasterb.gif"></div>
+    <div class="item"></div>
+    <div class="item" id="jesus"><img src="jesus.gif"></div>
+    <div class="item"></div>
+    <div class="item"><img src="bellb.gif"></div>
+    <div class="item"><img src="mouth.gif"></div>
+
+    <!-- Fila 3 -->
+    <div class="item"><img src="bells.gif"></div>
+    <div class="item"><img src="clocks.gif"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"><img src="toasterb.gif"></div>
+    <div class="item"><img src="clocks.gif"></div>
+
+    <!-- Fila 4 -->
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"><img src="worms.gif"></div>
+    <div class="item"></div>
+    <div class="item"><img src="mouth.gif"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+
+    <!-- Fila 5 -->
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+
+  <script>
+    function toggleMusic() {
+      const audio = document.getElementById("musica");
+      const btn = document.getElementById("musicBtn");
+
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "🔇 Detener música";
+      } else {
+        audio.pause();
+        btn.textContent = "🎵 Reproducir música";
+      }
+    }
+  </script>
+</body>
+</html>
 
 
