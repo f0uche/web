@@ -62,24 +62,26 @@
   }
 
   /* 🔧 Ajustes para móviles */
-  @media (max-width: 600px) {
-    .item img {
-      width: 12vw;
-    }
-
-    #jesus img {
-      width: 15vw;
-    }
-
-    #musicBtn {
-      font-size: 3.5vw;
-      padding: 1vw 2vw;
-    }
-
-    h1 {
-      font-size: 7vw;
-    }
+@media (max-width: 600px) {
+  .item img {
+    width: 12vw;
   }
+
+  /* Jesús al doble de tamaño que en escritorio */
+  #jesus img {
+    width: 20vw; /* antes 10vw en escritorio → el doble */
+  }
+
+  #musicBtn {
+    font-size: 3.5vw;
+    padding: 1vw 2vw;
+  }
+
+  h1 {
+    font-size: 7vw;
+  }
+}
+
 </style>
 </head>
 <body>
